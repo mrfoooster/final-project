@@ -1,0 +1,58 @@
+cidl: "1.0"
+info:
+  name: nft
+  title: Patika NFT
+  version: 0.0.1
+  license:
+    name: Unlicense
+    identifier: Unlicense
+
+types:
+  VotingData:
+    fields:
+      - name: option1Votes
+        type: u32
+      - name: option2Votes
+        type: u32
+
+methods:
+  - name: initialize
+    accounts:
+      - name: votingData
+        isMut: true
+    args:
+      - name: initialVotesOption1
+        type: u32
+      - name: initialVotesOption2
+        type: u32
+
+  - name: vote
+    accounts:
+      - name: votingData
+        isMut: true
+      - name: voter
+      - name: token
+        isSigner: false
+    args:
+      - name: selectedOption
+        type: u8
+
+  - name: getResults
+    accounts:
+      - name: votingData
+      - name: output
+    args:
+      - name: resultOption1
+        type: u32
+      - name: resultOption2
+        type: u32
+
+instructions:
+  - name: initialize
+    data: "01" # Replace with your initialization data
+
+  - name: vote
+    data: "02" # Replace with your vote instruction data
+
+  - name: getResults
+    data: "03" # Replace with your getResults instruction data
